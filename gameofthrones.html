@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Game of Thrones</title>
+        <meta name="description" content="Game of Thrones API">
+         <link rel="stylesheet" href="gof-style.css"> 
+        <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('img').click(function(){
+            var house = $(this).attr('id');
+            $.get(`https://www.anapioficeandfire.com/api/houses/${house}`,function(res){
+                console.log(res);
+                $('h2').append(res.name);
+                $('h3').append(res.words);
+                for(let i=0;i<res.titles.length;i++){
+                    $('p').append(res.titles[i] + ", ");
+                }
+            },'json');
+        })
+    })
+</script>
+    </head>
+    <body>
+        <div id="main">
+        <div id="wrapper">
+            <img id="362" src="gof/stark.jpg" alt="Stark House banner">
+            <img id="378" src="gof/targaryen.jpg" alt="Targaryen House banner">
+            <img id="229" src="gof/lannister.jpg" alt="Lannister House banner">
+            <img id="16" src="gof/baratheon.png" alt="Baratheon House banner">
+        </div>
+        <div id="details">
+            <h1>House Details</h1>
+            <h2>Name: </h2>
+            <h3>Words: </h3>
+            <p><strong>Titles: </strong></p>
+        </div>
+        </div>
+    </body>
+</html>
