@@ -16,11 +16,13 @@
             var house = $(this).attr('id');
             $.get(`https://www.anapioficeandfire.com/api/houses/${house}`,function(res){
                 console.log(res);
-                $('h2').append(res.name);
-                $('h3').append(res.words);
-                for(let i=0;i<res.titles.length;i++){
+                $('h2').html("Name: " + res.name);
+                $('h3').html("Words: " + res.words);
+                $('p').html("<strong>Titles: </strong>");
+                for(let i=0;i<res.titles.length-1;i++){
                     $('p').append(res.titles[i] + ", ");
                 }
+                $('p').append(res.titles[res.titles.length-1]);
             },'json');
         })
     })
@@ -32,7 +34,7 @@
             <img id="362" src="gof/stark.jpg" alt="Stark House banner">
             <img id="378" src="gof/targaryen.jpg" alt="Targaryen House banner">
             <img id="229" src="gof/lannister.jpg" alt="Lannister House banner">
-            <img id="16" src="gof/baratheon.png" alt="Baratheon House banner">
+            <img id="15" src="gof/baratheon.png" alt="Baratheon House banner">
         </div>
         <div id="details">
             <h1>House Details</h1>
