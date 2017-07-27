@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Weather App</title>
+        <meta name="description" content="Testing a Weather App">
+        <link rel="stylesheet" href="ninja2cat-style.css">
+        <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('form').submit(function(e){
+            e.preventDefault();
+            var city = $('#city').val();
+            $.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&&appid=10f15df7044e33e856f289416448448e`,function(res){
+                $('h1').text(res.name);
+                $('p').text("Temperature: " + Math.trunc((res.main.temp)*(9/5) - 459.67));
+            },'json');
+        })
+    })
+</script>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="city" name="city" value="San Francisco">
+            <input type="submit" value="Search Weather">
+        </form>
+        <h1></h1>
+        <p></p>
+    </body>
+</html>
